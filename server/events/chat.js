@@ -10,10 +10,9 @@ let player = sockets.get(socket.id);
       json.nick = player.nick;
       let payload = JSON.stringify(json);
       socket.broadcast.emit(events.CHAT, send.CHAT, payload);
-      log (payload);
       if (webhooktoken) {
         const hook = new Webhook(webhooktoken);
-        hook.setMentions(1);
+        hook.disableMentions;
         hook.setUsername(json.nick);
         hook.send(json.data);
       }

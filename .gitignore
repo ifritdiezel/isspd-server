@@ -3,12 +3,13 @@ node_modules
 
 # test client
 .gitignore
+run
+config.json
+keys.json
 
 # vim swap files
 *.swp
 *.swo
 
 # defaults
-config.json
-keys.json
-
+.idea
