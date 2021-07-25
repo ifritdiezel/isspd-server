@@ -8,6 +8,7 @@ const handleDisconnect = (sockets, socket ) => {
   const s = sockets.get(socket.id);
   if (webhooktoken) {
     const hook = new Webhook(webhooktoken);
+    hook.disableMentions(0);
     hook.setAvatar("https://media.discordapp.net/attachments/837549718242328586/867368177045602304/leave.png");
     hook.send(s.nick + " disconnected")
   }

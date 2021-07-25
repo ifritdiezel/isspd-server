@@ -17,6 +17,7 @@ if (keys[token] != null){
         log(socket.id, "identified as:", keys[token]);
         if (webhooktoken) {
         const hook = new Webhook(webhooktoken);
+        hook.disableMentions(0);
         hook.setAvatar("https://media.discordapp.net/attachments/837549718242328586/867368178324733962/join.png");
         hook.send(keys[token] + " joined the game")
       }
