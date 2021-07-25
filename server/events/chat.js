@@ -3,7 +3,6 @@ const events = require("./events");
 const send = require("../send");
 const { Webhook } = require('discord-webhook-node');
 const { webhooktoken } = require("../../config")
-const hook = new Webhook(webhooktoken);
 
 const handleChat = (sockets, socket, data) => {
 let player = sockets.get(socket.id);
@@ -13,6 +12,7 @@ let player = sockets.get(socket.id);
       socket.broadcast.emit(events.CHAT, send.CHAT, payload);
       log (payload);
       if (webhooktoken) {
+        const hook = new Webhook(webhooktoken);
         hook.setMentions(1);
         hook.setUsername(json.nick);
         hook.send(json.data);

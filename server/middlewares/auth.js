@@ -2,8 +2,7 @@ const { readDefaults, log } = require("../util");
 const { readRegistered } = require("../util");
 const { version } = require("../../package");
 const { Webhook } = require('discord-webhook-node');
-const config = require("../../config")
-const hook = new Webhook(config.webhooktoken);
+const { webhooktoken } = require("../../config")
 
 const handleAuth = (sockets, socket, token) =>
   new Promise((res, rej) => {
@@ -16,8 +15,11 @@ if (keys[token] != null){
         };
         sockets.set(socket.id, { socket, ...something });
         log(socket.id, "identified as:", keys[token]);
+        if (webhooktoken) {
+        const hook = new Webhook(webhooktoken);
         hook.setAvatar("https://media.discordapp.net/attachments/837549718242328586/867368178324733962/join.png");
         hook.send(keys[token] + " joined the game")
+      }
         res();
       } else {
         log(token, socket.id, "rejected auth");

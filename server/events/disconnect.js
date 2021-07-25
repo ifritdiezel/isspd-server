@@ -2,14 +2,15 @@ const {log} = require("../util");
 const events = require("./events");
 const send = require("../send");
 const { Webhook } = require('discord-webhook-node');
-const config = require("../../config")
-const hook = new Webhook(config.webhooktoken);
-
+const { webhooktoken } = require("../../config")
 const handleDisconnect = (sockets, socket ) => {
   log(socket.id, "disconnected");
   const s = sockets.get(socket.id);
-  hook.setAvatar("https://media.discordapp.net/attachments/837549718242328586/867368177045602304/leave.png");
-  hook.send(s.nick + " disconnected")
+  if (webhooktoken) {
+    const hook = new Webhook(webhooktoken);
+    hook.setAvatar("https://media.discordapp.net/attachments/837549718242328586/867368177045602304/leave.png");
+    hook.send(s.nick + " disconnected")
+  }
   for (const room of socket.rooms) {
     if (room !== socket.id) {
       let payload = JSON.stringify({
