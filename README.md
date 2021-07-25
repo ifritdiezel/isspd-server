@@ -13,6 +13,12 @@ Features:
 4. `itemSharing`: Whether to allow players to share items by throwing
 5. `webhooktoken`: The webhook token used to bridge with Discord. Leave null to disable
 
+`keys.json` contains token:nickname pairs used for identification
+
+## Requirements
+
+`discord-webhook-node`
+
 ## Running
 
 `npm run start`
