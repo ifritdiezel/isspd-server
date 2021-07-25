@@ -12,7 +12,7 @@ let player = sockets.get(socket.id);
       socket.broadcast.emit(events.CHAT, send.CHAT, payload);
       if (webhooktoken) {
         const hook = new Webhook(webhooktoken);
-        hook.disableMentions;
+        hook.disableMentions(0);
         hook.setUsername(json.nick);
         hook.send(json.data);
       }
