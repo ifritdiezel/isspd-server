@@ -30,4 +30,4 @@ disableMentions(a){
 
 ## Running
 
-`npm run start`
+Download source code. Unpack and run `npm run start` in the resulting directory.
