@@ -17,7 +17,16 @@ Features:
 
 ## Requirements
 
-`discord-webhook-node`
+`discord-webhook-node` **patched** to disable everyone/here pings.
+Add the following code in webhook.js.
+```
+disableMentions(a){
+        this.payload.allowed_mentions = {
+    "parse": []
+  }
+        return this;
+    }
+```
 
 ## Running
 
