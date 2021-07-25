@@ -1,0 +1,7 @@
+{
+	"port": 9090,
+	"roomprefix": "spdnet",
+	"seed": 12345678,
+	"webhooktoken":null,
+	"itemSharing": true
+}
