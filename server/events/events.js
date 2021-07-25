@@ -1,5 +1,4 @@
 module.exports = {
-    AUTH: "auth",
     MESSAGE: "message",
     MOTD: "motd",
     ACTION: "action",
@@ -7,4 +6,5 @@ module.exports = {
     DISCONNECT: "disconnecting",
     CHAT: "chat",
     DISCORDCHAT: "discordchat",
+    TRANSFER: "transfer"
 };

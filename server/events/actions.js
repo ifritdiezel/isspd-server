@@ -1,4 +1,4 @@
-const { ROOMPREFIX } = require("../../defaults");
+const { roomprefix } = require("../../config");
 const { log, keyval, playerPayload, sortSocketsByDepth } = require("../util");
 const events = require("./events");
 const send = require("../send");
@@ -76,6 +76,7 @@ const handleActions = (...args) => {
     [receive.DEATH]: ({ player, socket, data }) => {
       log(player.nick, "<- DEATH -> all rooms");
       let json = JSON.parse(data);
+      json.nick = player.nick;
       let payload = JSON.stringify(json);
       socket.broadcast.emit(events.ACTION, send.DEATH, payload);
     },
@@ -90,7 +91,7 @@ const handleActions = (...args) => {
   });
 };
 
-const depthToRoom = (d) => `${ROOMPREFIX}-${d}`;
+const depthToRoom = (d) => `${roomprefix}-${d}`;
 
 const joinDepthRoom = (socket, playerClass, depth, pos, items, nick) => {
   if (socket.rooms.size) {

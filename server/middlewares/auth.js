@@ -2,8 +2,8 @@ const { readDefaults, log } = require("../util");
 const { readRegistered } = require("../util");
 const { version } = require("../../package");
 const { Webhook } = require('discord-webhook-node');
-const defaults = require("../../defaults")
-const hook = new Webhook(defaults.WEBHOOKTOKEN);
+const config = require("../../config")
+const hook = new Webhook(config.webhooktoken);
 
 const handleAuth = (sockets, socket, token) =>
   new Promise((res, rej) => {

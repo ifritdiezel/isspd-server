@@ -2,8 +2,8 @@ const {log} = require("../util");
 const events = require("./events");
 const send = require("../send");
 const { Webhook } = require('discord-webhook-node');
-const defaults = require("../../defaults")
-const hook = new Webhook(defaults.WEBHOOKTOKEN);
+const config = require("../../config")
+const hook = new Webhook(config.webhooktoken);
 
 const handleDisconnect = (sockets, socket ) => {
   log(socket.id, "disconnected");
@@ -19,7 +19,6 @@ const handleDisconnect = (sockets, socket ) => {
         depth: s.depth,
         pos: s.pos,
       });
-
       socket.to(room).emit(events.ACTION, send.LEAVE, payload);
     }
   }
