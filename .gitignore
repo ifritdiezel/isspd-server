@@ -2,7 +2,7 @@
 node_modules
 
 # test client
-client
+.gitignore
 
 # vim swap files
 *.swp
@@ -11,3 +11,4 @@ client
 # defaults
 defaults.json
 keys.json
+
