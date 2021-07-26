@@ -4,6 +4,7 @@ Features:
 - Compatibility with normal clients
 - Compatibility with the discord registration scheme via spdnetbot
 - Discord bridge (currently 1-way only)
+- Daily seed randomization
 
 ## Config
 
