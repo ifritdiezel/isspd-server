@@ -7,7 +7,7 @@ const { handleChat } = require("./events/chat");
 const { handleActions } = require("./events/actions");
 const { handleTransfer } = require("./events/transfer");
 const { handleAuth, motd } = require("./middlewares/auth");
-const { port, seed, itemSharing } = require("../config");
+const { port, seed, itemSharing, dailyseed } = require("../config");
 const events = require("./events/events");
 const send = require("./send");
 
@@ -25,8 +25,10 @@ io.use((socket, next) => {
     .catch((e) => next(e));
 });
 
+
+
 io.on("connection", (socket) => {
-  socket.emit(events.MOTD, JSON.stringify(motd("", seed)));
+  socket.emit(events.MOTD, motd("", seed));
   socket.on(events.DISCONNECT, () => handleDisconnect(sockets, socket));
   socket.on(events.MESSAGE, (type, data) => handleMessages(sockets, socket, type, data));
   socket.on(events.CHAT, (data) => handleChat(sockets, socket, data));

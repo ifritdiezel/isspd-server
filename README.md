@@ -13,6 +13,7 @@ Features:
 3. `seed`: The seed that will be sent to all players
 4. `itemSharing`: Whether to allow players to share items by throwing
 5. `webhooktoken`: The webhook token used to bridge with Discord. Leave null to disable
+6. `dailyseed`: Randomize the seed every day
 
 `keys.json` contains token:nickname pairs used for identification
 

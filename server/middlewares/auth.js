@@ -2,13 +2,12 @@ const { readDefaults, log } = require("../util");
 const { readRegistered } = require("../util");
 const { version } = require("../../package");
 const { Webhook } = require('discord-webhook-node');
-const { webhooktoken } = require("../../config")
+const { webhooktoken, dailyseed } = require("../../config");
+const seedrandom = require('seedrandom');
 
 const handleAuth = (sockets, socket, token) =>
   new Promise((res, rej) => {
     readRegistered().then(keys => {
-
-log(JSON.stringify(keys));
 if (keys[token] != null){
   var something = {
           nick:`${keys[token]}`
@@ -30,10 +29,24 @@ if (keys[token] != null){
     })
   });
 
-const motd = (nick, seed) => ({
-  motd: `Hello ${nick}! Welcome to IS SPDNet server! \nBuild: ${version}`,
-  seed,
-});
+function motd (nick, seed) {
+  var motd = {"motd":`Hello ${nick}! Welcome to IS SPDNet server! \nBuild: ${version}`}
+  if(dailyseed){
+    let today = new Date().toISOString().slice(0, 10);
+    console.log(today);
+    seedrandom(today, { global: true });
+    var randomnum = Math.random()*100000000;
+    console.log(randomnum);
+    var todayseed = Math.floor(randomnum);
+    motd.seed = todayseed
+  } else {
+    var todayseed = seed;
+    motd.seed = todayseed
+  }
+  console.log(todayseed);
+  return JSON.stringify(motd)
+};
+
 
 module.exports = {
   handleAuth,
